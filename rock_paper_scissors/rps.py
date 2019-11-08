@@ -2,6 +2,7 @@
 
 import sys
 
+cache = {}
 def rock_paper_scissors(n):
   rps = [['rock'],['paper'],['scissors']]
   if n < 1:
@@ -9,9 +10,12 @@ def rock_paper_scissors(n):
   if n == 1:
     return rps
   def rpsTree(L, n):
+    global cache
     if n == 0:
       return [[]]
-    return [x + y for x in rpsTree(L, n-1) for y in L]
+    if n not in cache:
+        cache[n] = [x + y for x in rpsTree(L, n-1) for y in L]
+    return cache[n]
   res = rpsTree(rps, n)
   return res
 
