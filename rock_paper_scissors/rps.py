@@ -3,7 +3,17 @@
 import sys
 
 def rock_paper_scissors(n):
-  pass 
+  rps = [['rock'],['paper'],['scissors']]
+  if n < 1:
+    return [[]]
+  if n == 1:
+    return rps
+  def rpsTree(L, n):
+    if n == 0:
+      return [[]]
+    return [x + y for x in rpsTree(L, n-1) for y in L]
+  res = rpsTree(rps, n)
+  return res
 
 
 if __name__ == "__main__":
